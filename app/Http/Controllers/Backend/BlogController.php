@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
@@ -44,6 +45,11 @@ class BlogController extends Controller
                 "thumbnail" => $thumbnail,
                 "tags" => $request->tags,
                 "description" => $request->description,
+                "seo_keywords" => $request->seo_keywords, 
+                "seo_description" => $request->seo_description, 
+                "seo_title" => $request->seo_title, 
+                "url" => $request->url,
+                "slug" => Str::random(30).time(),
             ]);
         }
 
@@ -71,6 +77,10 @@ class BlogController extends Controller
         $blog->description = $request->description;
         $blog->tags = $request->tags;
         $blog->category_id = $request->category_id;
+        $blog->seo_title = $request->seo_title;
+        $blog->seo_keywords = $request->seo_keywords;
+        $blog->seo_description = $request->seo_description;
+        $blog->url = $request->url;
 
         if ($request->hasFile('thumbnail')) {
             $thumbnail = $request->file('thumbnail');
@@ -83,6 +93,12 @@ class BlogController extends Controller
         $blog->update();
 
         return redirect("backend/blogs")->with("success", "Blog Updated Successfully!");
+    }
+
+    function show($id){
+        $blog = Blog::find($id);
+
+        return view("Backend.Blog.show", compact('blog'));
     }
 
     function destroy($id) {

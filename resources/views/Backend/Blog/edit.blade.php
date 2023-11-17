@@ -16,6 +16,9 @@
         <form action="{{ URL::to('backend/update-blog') }}" method="post" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="id" value="{{ $blog->id }}">
+
+            <div class="card p-3 mb-2">
+                <h3 class="card-title">Blog Information</h3>
             <div class="row">
               <div class="col">
                 <div class="form-group">
@@ -65,6 +68,46 @@
                     </div>
                 </div>
               </div>
+            </div>
+
+            
+            <div class="card p-3">
+            <h3 class="card-title">SEO Meta</h3>
+              <div class="row mt-2">
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>SEO Title</label>
+                        <input type="text" name="seo_title" class="form-control" value="{{ $blog->seo_title }}">
+                    </div>
+                </div>
+
+              <div class="col-4">
+                    <div class="form-group">
+                        <label>SEO Keywords</label>
+                        <input type="text" name="seo_keywords" class="form-control" value="{{ $blog->seo_keywords }}">
+                    </div>
+                </div>
+              
+
+              <div class="col-4">
+                    <div class="form-group">
+                        <label>URL</label>
+                        <input type="url" name="url" class="form-control" value="{{ $blog->url }}">
+                    </div>
+                </div>
+             
+
+             
+              <div class="col-12">
+                    <div class="form-group">
+                        <label>SEO Description</label>
+                        <textarea name="seo_description" class="form-control">{{ $blog->seo_description }}</textarea>
+                    </div>
+                </div>
+            </div>
+            </div>
+
 
               <div class="row mt-2">
                 <div class="col">

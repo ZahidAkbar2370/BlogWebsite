@@ -15,11 +15,19 @@ class HomeController extends Controller
         return view('welcome', compact('blogs'));
     }
 
-    function viewBlog($id) {
-        $blog = Blog::find($id);
+    function viewBlog($slug) {
+        $blog = Blog::where("slug", $slug)->first();
 
         $randomBlogs = Blog::inRandomOrder()->paginate(5);
 
         return view('blog', compact('blog', 'randomBlogs'));
+    }
+
+    function searchBlog($searchCategory) {
+        $category = Category::where("category_name", $searchCategory)->first();
+        $blogs = Blog::where("category_id", $category->id)->get();
+
+        return view('Frontend.search_blogs', compact('blogs'));
+        
     }
 }

@@ -14,6 +14,11 @@ class Blog extends Model
     protected $fillable = [
         "created_by",
         "category_id",
+        "slug",
+        "seo_title",
+        "seo_keywords",
+        "seo_description",
+        "url",
         "title",
         "thumbnail",
         "tags",

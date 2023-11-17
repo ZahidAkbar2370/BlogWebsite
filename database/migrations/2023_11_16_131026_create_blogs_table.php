@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId("created_by");
             $table->foreignId("category_id");
+            $table->string("slug")->unique();
             $table->string("title");
             $table->string("thumbnail");
             $table->string("tags")->nullable();
             $table->longText("description")->nullable();
             $table->enum("status", ["active", "inactive"])->default("inactive");
+            $table->string("seo_title")->nullable();
+            $table->string("seo_keywords")->nullable();
+            $table->longText("seo_description")->nullable();
+            $table->string("url")->nullable();
             $table->timestamps();
         });
     }

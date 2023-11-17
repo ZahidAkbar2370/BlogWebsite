@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [App\Http\Controllers\Frontend\HomeController::class, "index"]);
 Route::get("blog/{id}", [App\Http\Controllers\Frontend\HomeController::class, "viewBlog"]);
+Route::get("search-blog/{search}", [App\Http\Controllers\Frontend\HomeController::class, "searchBlog"]);
 
 Route::prefix('backend')->middleware(['auth'])->group( function () {
 
@@ -23,14 +24,15 @@ Route::prefix('backend')->middleware(['auth'])->group( function () {
     Route::post("save-blog", [App\Http\Controllers\Backend\BlogController::class, "store"]);
     Route::get('/update-blog-status', [App\Http\Controllers\Backend\BlogController::class, "updateStatus"]);
     Route::get('/edit-blog/{id}', [App\Http\Controllers\Backend\BlogController::class, "edit"]);
+    Route::get('/show-blog/{id}', [App\Http\Controllers\Backend\BlogController::class, "show"]);
     Route::post("update-blog", [App\Http\Controllers\Backend\BlogController::class, "update"]);
     Route::get('/delete-blog/{id}', [App\Http\Controllers\Backend\BlogController::class, "destroy"]);
 
 });
 
 Auth::routes();
-Route::get("register", function(){
-    return redirect("login");
-});
+// Route::get("register", function(){
+//     return redirect("login");
+// });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

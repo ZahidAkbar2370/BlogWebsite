@@ -43,7 +43,8 @@
                                   </div>
                             </td>
                             <td>
-                                <a href="{{ url('backend/edit-blog',$blog->id) }}" class="btn btn-info"><i class="bi bi-pencil-square"></i></a>
+                              <a href="{{ url('backend/show-blog',$blog->id) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
+                              <a href="{{ url('backend/edit-blog',$blog->id) }}" class="btn btn-info"><i class="bi bi-pencil-square"></i></a>
                                 <a href="{{ url('backend/delete-blog',$blog->id) }}" onclick="return confirm('Are you sure to Delete Blog?')" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
