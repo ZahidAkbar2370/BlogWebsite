@@ -28,6 +28,9 @@ Route::prefix('backend')->middleware(['auth'])->group( function () {
     Route::post("update-blog", [App\Http\Controllers\Backend\BlogController::class, "update"]);
     Route::get('/delete-blog/{id}', [App\Http\Controllers\Backend\BlogController::class, "destroy"]);
 
+    Route::get('/settings', [App\Http\Controllers\Backend\SettingController::class, "viewSetting"]);
+    Route::post('/update-setting', [App\Http\Controllers\Backend\SettingController::class, "updateSetting"]);
+
 });
 
 Auth::routes();

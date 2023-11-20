@@ -57,7 +57,8 @@
                       <div class="col-6">
                           <div class="form-group">
                               <label>Thumbnail</label>
-                              <input type="file" name="thumbnail" class="form-control" required="true">
+                              <input type="file" name="thumbnail" class="form-control" id="imageInput" onchange="previewImage()" required="true">
+                              <img id="imagePreview" src="#" class="mt-2" alt="Image Preview" style="display: none; max-width: 200px; max-height: 150px;">
                           </div>
                       </div>
                   </div>
@@ -67,7 +68,10 @@
                       <div class="col-12">
                           <div class="form-group">
                               <label>Description</label>
-                              <textarea name="description" id="blog_description" placeholder="Enter Description" class="form-control"  required="true"></textarea>
+                              <textarea name="description" id="blog_description" placeholder="Enter Description" class="tinymce-editor">{{ old('description') }}</textarea>
+                              @if($errors->has('description'))
+                              <div class="text-danger">{{ $errors->first('description') }}</div>
+                          @endif
                           </div>
                       </div>
                     </div>
@@ -81,13 +85,13 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label>SEO Title</label>
-                        <input type="text" name="seo_title" placeholder="Enter Title" class="form-control">
+                        <input type="text" name="seo_title" placeholder="Enter Title" value="{{ old('seo_title') }}" class="form-control">
                     </div>
                 </div>
                 <div class="col-4">
                       <div class="form-group">
                           <label>SEO Keywords</label>
-                          <input type="text" name="seo_keywords" placeholder="Enter Keywords" class="form-control">
+                          <input type="text" name="seo_keywords" placeholder="Enter Keywords" value="{{ old('seo_keywords') }}" class="form-control">
                       </div>
                   </div>
                 
@@ -95,14 +99,14 @@
                 <div class="col-4">
                       <div class="form-group">
                           <label>URL</label>
-                          <input type="url" name="url" placeholder="Enter URL" class="form-control">
+                          <input type="url" name="url" placeholder="Enter URL" value="{{ old('url') }}" class="form-control">
                       </div>
                   </div>
 
                   <div class="col-12 mt-3">
                     <div class="form-group">
                         <label>SEO Description</label>
-                        <textarea name="seo_description" placeholder="Enter Description" class="form-control"></textarea>
+                        <textarea name="seo_description" placeholder="Enter Description" class="form-control">{{ old('seo_description') }}</textarea>
                     </div>
                 </div>
                 </div>
@@ -123,6 +127,7 @@
 </div>
     </section>
 </main>
+
 
 
 @endsection

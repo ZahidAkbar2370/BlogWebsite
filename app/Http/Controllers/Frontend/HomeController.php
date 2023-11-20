@@ -25,7 +25,7 @@ class HomeController extends Controller
 
     function searchBlog($searchCategory) {
         $category = Category::where("category_name", $searchCategory)->first();
-        $blogs = Blog::where("category_id", $category->id)->get();
+        $blogs = Blog::where("category_id", $category->id)->where('status', "active")->get();
 
         return view('Frontend.search_blogs', compact('blogs'));
         

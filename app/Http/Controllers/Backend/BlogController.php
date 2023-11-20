@@ -25,8 +25,9 @@ class BlogController extends Controller
     }
 
     public function store(Request $request) {
+        // print_r($request->all());exit;
         $request->validate([
-            'title' => 'required', 'max:255',
+            'title' => 'required|max:255|unique:blogs',
             'thumbnail' => 'required',
             'description' => 'required',
         ]);
@@ -49,7 +50,7 @@ class BlogController extends Controller
                 "seo_description" => $request->seo_description, 
                 "seo_title" => $request->seo_title, 
                 "url" => $request->url,
-                "slug" => Str::random(30).time(),
+                "slug" => Str::slug($request->input('title')),
             ]);
         }
 
@@ -57,7 +58,7 @@ class BlogController extends Controller
     }
 
     function edit($id){
-        $categories = Category::where("status", "active")->get();
+        $categories = Category::where("status", "active")->paginate(5);
 
         $blog = Blog::find($id);
 
