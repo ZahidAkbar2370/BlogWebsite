@@ -31,8 +31,8 @@ Route::prefix('backend')->middleware(['auth'])->group( function () {
 });
 
 Auth::routes();
-// Route::get("register", function(){
-//     return redirect("login");
-// });
+Route::get("register", function(){
+    return redirect("login");
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
