@@ -5,6 +5,8 @@
  */
 
 import axios from 'axios';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -30,3 +32,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+
+// ...
+
+// Add this line inside the window.editor configuration block
+config
+    .set('blog_description', ClassicEditor);

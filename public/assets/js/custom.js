@@ -49,3 +49,19 @@ $(document).ready(function () {
 
 
 });
+
+
+
+function previewImage() {
+  var input = document.getElementById('imageInput');
+  var preview = document.getElementById('imagePreview');
+  
+  preview.style.display = "block";
+
+  var reader = new FileReader();
+  reader.onload = function (e) {
+      preview.src = e.target.result;
+  };
+
+  reader.readAsDataURL(input.files[0]);
+}

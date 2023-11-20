@@ -55,7 +55,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Thumbnail</label>
-                        <input type="file" name="thumbnail" class="form-control">
+                        <input type="file" name="thumbnail" class="form-control" id="imageInput" onchange="previewImage()">
+                        <img id="imagePreview" src="{{ asset($blog->thumbnail) }}" class="mt-2" alt="Image Preview" style="max-width: 200px; max-height: 150px;">
                     </div>
                 </div>
               </div>
@@ -64,7 +65,7 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea name="description" placeholder="Enter Description" class="form-control"  required="true">{{ $blog->description }}</textarea>
+                        <textarea name="description" id="blog_description" placeholder="Enter Description" class="tinymce-editor">{{ $blog->description ?? old('description') }}</textarea>
                     </div>
                 </div>
               </div>
@@ -78,14 +79,14 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label>SEO Title</label>
-                        <input type="text" name="seo_title" class="form-control" value="{{ $blog->seo_title }}">
+                        <input type="text" name="seo_title" class="form-control" value="{{ $blog->seo_title ?? old('seo_title') }}">
                     </div>
                 </div>
 
               <div class="col-4">
                     <div class="form-group">
                         <label>SEO Keywords</label>
-                        <input type="text" name="seo_keywords" class="form-control" value="{{ $blog->seo_keywords }}">
+                        <input type="text" name="seo_keywords" class="form-control" value="{{ $blog->seo_keywords ?? old('seo_keywords') }}">
                     </div>
                 </div>
               
@@ -93,7 +94,7 @@
               <div class="col-4">
                     <div class="form-group">
                         <label>URL</label>
-                        <input type="url" name="url" class="form-control" value="{{ $blog->url }}">
+                        <input type="url" name="url" class="form-control" value="{{ $blog->url ?? old('url') }}">
                     </div>
                 </div>
              
@@ -102,7 +103,7 @@
               <div class="col-12">
                     <div class="form-group">
                         <label>SEO Description</label>
-                        <textarea name="seo_description" class="form-control">{{ $blog->seo_description }}</textarea>
+                        <textarea name="seo_description" class="form-control">{{ $blog->seo_description ?? old('seo_description') }}</textarea>
                     </div>
                 </div>
             </div>

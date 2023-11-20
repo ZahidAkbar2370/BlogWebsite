@@ -20,9 +20,9 @@
                 <img class="blog-image w-100 mt-4" src="{{ asset($blog->thumbnail) }}"></a>
 
 
-                <div class="col-12 mt-5">
+                <div class="col-md-12 col-sm-12 mt-5">
                     <h3>Description</h3>
-                    <p>{{ $blog->description }}</p>
+                    <div>{!! htmlspecialchars_decode($blog->description) !!}</div>
                 </div>
             </div>
 
