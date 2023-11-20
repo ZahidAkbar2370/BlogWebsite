@@ -45,6 +45,7 @@ class CategoryController extends Controller
         $selectCategory = Category::find($id);
 
         $selectCategory->blogs->each->delete();
+        $selectCategory->breeds->each->delete();
         $selectCategory->delete();
 
         return redirect("backend/categories")->with("success", "Category with it's Blogs Delete Successfully!");
@@ -54,12 +55,12 @@ class CategoryController extends Controller
     {
         $categoryId = $request->input('id');
         $status = $request->input('status');
-    
+
         $category = Category::where('id', $categoryId)->first();
         $category->status = $status;
-        
+
         $category->update();
-        
+
         return response()->json(['message' => "Status Updated Successfully!"]);
     }
 }

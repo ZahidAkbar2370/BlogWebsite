@@ -21,4 +21,14 @@ class Category extends Model
     {
         return $this->hasMany(Blog::class, "category_id", "id");
     }
+
+    public function breeds()
+    {
+        return $this->hasMany(Breed::class, "category_id", "id");
+    }
+
+    public function sub_categories()
+    {
+        return $this->hasMany(SubCategory::class, "category_id", "id");
+    }
 }

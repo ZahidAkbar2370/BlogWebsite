@@ -18,7 +18,7 @@
     <div class="col-12 mt-3">
         <form action="{{ URL::to('backend/save-blog') }}" method="post" enctype="multipart/form-data">
             @csrf
-           
+
             <div class="card p-3 mb-2">
                 <h3 class="card-title">Blog Information</h3>
                 <div class="row">
@@ -45,7 +45,7 @@
                       </div>
                     </div>
                   </div>
-      
+
                   <div class="row mt-2">
                       <div class="col-6">
                           <div class="form-group">
@@ -53,7 +53,7 @@
                               <input type="text" name="tags" value="{{ old('tags') }}" class="form-control" placeholder="Blog Tags">
                           </div>
                       </div>
-      
+
                       <div class="col-6">
                           <div class="form-group">
                               <label>Thumbnail</label>
@@ -62,8 +62,8 @@
                           </div>
                       </div>
                   </div>
-                    
-      
+
+
                     <div class="row mt-2">
                       <div class="col-12">
                           <div class="form-group">
@@ -94,8 +94,8 @@
                           <input type="text" name="seo_keywords" placeholder="Enter Keywords" value="{{ old('seo_keywords') }}" class="form-control">
                       </div>
                   </div>
-                
-  
+
+
                 <div class="col-4">
                       <div class="form-group">
                           <label>URL</label>
@@ -112,7 +112,7 @@
                 </div>
             </div>
 
-                
+
 
               <div class="row mt-2">
                 <div class="col">

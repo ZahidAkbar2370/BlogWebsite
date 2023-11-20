@@ -28,14 +28,31 @@ Route::prefix('backend')->middleware(['auth'])->group( function () {
     Route::post("update-blog", [App\Http\Controllers\Backend\BlogController::class, "update"]);
     Route::get('/delete-blog/{id}', [App\Http\Controllers\Backend\BlogController::class, "destroy"]);
 
+    Route::get('/characteristics', [App\Http\Controllers\Backend\CharacteristicController::class, 'index']);
+    Route::get('/create-characteristic', [App\Http\Controllers\Backend\CharacteristicController::class, 'create']);
+    Route::get('/get-characteristics/{category_id}', [App\Http\Controllers\Backend\CharacteristicController::class, 'getCharacteristics']);
+
+    Route::get('/breeds', [App\Http\Controllers\Backend\BreedController::class, 'index']);
+    Route::get('/create-breed', [App\Http\Controllers\Backend\BreedController::class, 'create']);
+    Route::post('/save-breed', [App\Http\Controllers\Backend\BreedController::class, 'store']);
+    Route::get('/delete-breed/{id}', [App\Http\Controllers\Backend\BreedController::class, 'destroy']);
+
     Route::get('/settings', [App\Http\Controllers\Backend\SettingController::class, "viewSetting"]);
     Route::post('/update-setting', [App\Http\Controllers\Backend\SettingController::class, "updateSetting"]);
+
+    Route::get('/export-data', [App\Http\Controllers\CommonController::class, 'exportData'])->name('blogs.export');
+
+    Route::get('/import-blog', [App\Http\Controllers\Backend\BlogController::class, 'importForm']);
+Route::post('/import-blog', [App\Http\Controllers\Backend\BlogController::class, 'import'])->name('blog.import');
+
+
+
 
 });
 
 Auth::routes();
-Route::get("register", function(){
-    return redirect("login");
-});
+// Route::get("register", function(){
+//     return redirect("login");
+// });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

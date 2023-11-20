@@ -2,6 +2,7 @@
 @section("admincontent")
 
 <main id="main" class="main">
+<button id="exportBlog" class="btn btn-success mb-2">Export Blogs</button>
 
 
     <section class="section">
@@ -35,7 +36,7 @@
                         <tr>
                             <th scope="row">{{ $blogKey+1 }}</th>
                             <td>{{ $blog->title }}</td>
-                            <td>{{ $blog->categories->category_name }}</td>
+                            <td>{{ $blog->categories->category_name ?? '' }}</td>
                             <td>{{ $blog->users->name ?? 'Admin' }}</td>
                             <td>
                                 <div class="form-check form-switch">
@@ -63,5 +64,37 @@
 
 
   </main><!-- End #main -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#exportBlog').click(function () {
+            $.ajax({
+                url: "{{ route('blogs.export') }}",
+                type: "GET",
+                success: function (response) {
+                    // Create a Blob object from the CSV data
+                    var blob = new Blob([response], { type: 'text/csv' });
+
+                    // Create a link to download the file
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'blog.csv';
+
+                    // Append the link to the document and trigger a click event
+                    document.body.appendChild(link);
+                    link.click();
+
+                    // Remove the link from the document
+                    document.body.removeChild(link);
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+</script>
+
 
 @endsection

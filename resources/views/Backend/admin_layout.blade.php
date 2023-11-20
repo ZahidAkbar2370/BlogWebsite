@@ -180,6 +180,29 @@
       </li><!-- End Class -->
 
       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#breeds-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-grid"></i><span>Breed</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="breeds-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="{{ url('backend/characteristics') }}">
+                  <i class="bi bi-circle"></i><span>Breed Characteristics</span>
+                </a>
+              </li>
+          <li>
+            <a href="{{ url('backend/breeds') }}">
+              <i class="bi bi-circle"></i><span>Breed List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('backend/create-breed') }}">
+              <i class="bi bi-circle"></i><span>Add Breed</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Class -->
+
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#blogs-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-megaphone"></i><span>Blog</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -192,6 +215,11 @@
           <li>
             <a href="{{ url('backend/create-blog') }}">
               <i class="bi bi-circle"></i><span>Add</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('backend/import-blog') }}">
+              <i class="bi bi-circle"></i><span>Import</span>
             </a>
           </li>
         </ul>
@@ -288,14 +316,14 @@
           <span>Announcements</span>
         </a>
       </li><!-- End Announcements -->
-    
+
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-gear"></i><span>Settings</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="settings-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          
+
           <li>
             <a href="{{ url('backend/currencies') }}">
               <i class="bi bi-circle"></i><span>Currency</span>
@@ -377,7 +405,7 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  
+
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

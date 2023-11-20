@@ -36,9 +36,9 @@ class BlogController extends Controller
             $thumbnail = $request->file('thumbnail');
 
             $fileName = time() . '_' . $thumbnail->getClientOriginalName();
-    
+
             $thumbnail = $thumbnail->move('thumbnails', $fileName);
-            
+
             Blog::create([
                 "created_by" => Auth::user()->id ?? 1,
                 "category_id" => $request->category_id,
@@ -46,9 +46,9 @@ class BlogController extends Controller
                 "thumbnail" => $thumbnail,
                 "tags" => $request->tags,
                 "description" => $request->description,
-                "seo_keywords" => $request->seo_keywords, 
-                "seo_description" => $request->seo_description, 
-                "seo_title" => $request->seo_title, 
+                "seo_keywords" => $request->seo_keywords,
+                "seo_description" => $request->seo_description,
+                "seo_title" => $request->seo_title,
                 "url" => $request->url,
                 "slug" => Str::slug($request->input('title')),
             ]);
@@ -87,7 +87,7 @@ class BlogController extends Controller
             $thumbnail = $request->file('thumbnail');
 
             $fileName = time() . '_' . $thumbnail->getClientOriginalName();
-    
+
             $blog->thumbnail = $thumbnail->move('thumbnails', $fileName);
         }
 
@@ -115,10 +115,46 @@ class BlogController extends Controller
 
     $blog = Blog::where('id', $blogId)->first();
     $blog->status = $status;
-    
+
     $blog->update();
-    
+
     return response()->json(['message' => "Blog Status Updated Successfully!"]);
 }
 
+function importform(){
+    return view('Backend.Blog.import');
+}
+    public function import(Request $request)
+    {
+        $file = $request->file('csv_file');
+
+        // Assuming your CSV file has headers (name, email, etc.)
+        $data = array_map('str_getcsv', file($file));
+
+        foreach ($data as $key => $row) {
+            // print_r($data);exit;
+            if($key > 0){
+                $checkBlog = Blog::where("slug", $row[3])->count();
+
+                if($checkBlog == 0){
+                    Blog::create([
+                        'created_by' => $row[1],
+                        'category_id' => $row[2],
+                        'slug' => $row[3],
+                        'title' => $row[4],
+                        'thumbnail' => $row[5],
+                        'tags' => $row[6],
+                        'description' => $row[7],
+                        'status' => $row[8],
+                        'seo_title' => $row[9],
+                        'seo_description' => $row[10],
+                        'url' => $row[11],
+                    ]);
+                }
+            }
+
+
+        }
+        return redirect("backend/blogs")->with('success', 'Data imported successfully');
+}
 }
