@@ -8,7 +8,7 @@
 
 @section("content")
 
-    
+
     <div class="container-fluid">
         <div class="row p-3">
             <div class="col-md-12">
@@ -45,7 +45,7 @@
                 @endif
             </div>
 
-            
+
         </div>
     </div>
 

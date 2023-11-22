@@ -42,7 +42,7 @@
                     <div class="col-5 mt-4">
                       <div class="form-group">
                           <label>Title</label>
-                          <input type="text" class="form-control" name="characteristic_title" value="{{ old('breed_ncharacteristic_titleame') }}" placeholder="Characteristic Title" required="true">
+                          <input type="text" class="form-control" name="characteristic_title[]" value="{{ old('breed_ncharacteristic_titleame') }}" placeholder="Characteristic Title" required="true">
                           @if($errors->has('characteristic_title'))
                               <div class="text-danger">{{ $errors->first('characteristic_title') }}</div>
                           @endif
@@ -52,7 +52,7 @@
                     <div class="col-5 mt-4">
                         <div class="form-group">
                             <label>Text</label>
-                            <input type="text" class="form-control" name="characteristic_text" value="{{ old('characteristic_text') }}" placeholder="Characteristic Text" required="true">
+                            <input type="number" min="0" max="100" class="form-control" name="characteristic_text[]" value="{{ old('characteristic_text') }}" placeholder="Percentage" required="true">
                             @if($errors->has('characteristic_text'))
                                 <div class="text-danger">{{ $errors->first('characteristic_text') }}</div>
                             @endif

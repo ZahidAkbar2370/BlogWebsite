@@ -65,9 +65,9 @@
                     <div class="col-12">
                         <div class="form-group">
                             {{-- <label>Description</label> --}}
-                            <textarea name="description" id="blog_description" placeholder="Enter Description" class="tinymce-editor">{{ old('description') }}</textarea>
-                            @if($errors->has('description'))
-                            <div class="text-danger">{{ $errors->first('description') }}</div>
+                            <textarea name="breed_description" id="breed_description" placeholder="Enter Description" class="tinymce-editor">{{ old('breed_description') }}</textarea>
+                            @if($errors->has('breed_description'))
+                            <div class="text-danger">{{ $errors->first('breed_description') }}</div>
                         @endif
                         </div>
                     </div>

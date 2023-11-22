@@ -32,15 +32,16 @@
                 </tr>
               </thead>
               <tbody>
-                @if(!empty($allBreeds))
-                    @foreach ($allBreeds as $breedKey => $breed)
+                @if(!empty($allCharacteristics))
+                    @foreach ($allCharacteristics as $charactersiticKey => $charactersitics)
                         <tr>
-                            <th scope="row">{{ $breedKey+1 }}</th>
+                            <th scope="row">{{ $charactersiticKey+1 }}</th>
                             {{-- <td>{{ $category->category_name }}</td> --}}
-                            <td>{{ $breed->categories->category_name ?? '' }}</td>
-                            <td>{{ $breed->breed_name }}</td>
+                            <td>{{ $charactersitics->categories->category_name ?? '' }}</td>
+                            <td>{{ $charactersitics->title }}</td>
+                            <td>{{ $charactersitics->value }}</td>
                             <td>
-                                <a href="{{ url('backend/delete-breed',$breed->id) }}" onclick="return confirm('Are you sure to Delete Breed?')" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                <a href="{{ url('backend/delete-charactersitics',$charactersitics->id) }}" onclick="return confirm('Are you sure to Delete Charactersitic?')" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

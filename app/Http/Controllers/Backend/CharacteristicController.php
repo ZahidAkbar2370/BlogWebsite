@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Characteristic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CharacteristicController extends Controller
 {
@@ -28,4 +29,30 @@ class CharacteristicController extends Controller
 
         return $result;
     }
+
+    public function store(Request $request){
+        // print_r($request->all());
+       if(!empty($request->characteristic_title)){
+         foreach($request->characteristic_title as $key => $title){
+
+       Characteristic::create([
+        "created_by" => Auth::user()->id ?? 1,
+        "category_id" => $request->category_id,
+        "title" => $title,
+        "value" => $request->characteristic_title[$key],
+        ]);
+}
+       }
+
+       return redirect("backend/characteristics")->with("success", "Characteristics Created Successfully!");
+
+    }
+
+    function destroy($id) {
+        Characteristic::find($id)->delete();
+
+        return redirect("backend/characteristics")->with("success", "Characteristics Deleted Successfully!");
+    }
+
+
 }

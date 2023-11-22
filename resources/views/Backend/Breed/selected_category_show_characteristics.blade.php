@@ -11,7 +11,7 @@
         <div class="form-group">
             <label>{{ $characteristic->title }}</label>
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="breed_characteristics[]">
+                <input type="checkbox" class="form-check-input" value="{{ $characteristic->id }}" name="breed_characteristics[]">
                 <label class="form-check-label">Enable</label>
             </div>
         </div>

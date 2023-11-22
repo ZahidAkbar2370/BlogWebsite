@@ -34,7 +34,7 @@
                     <div class="col">
                       <div class="form-group">
                           <label>Category</label>
-                          <select class="form-control" name="category_id"  required="true">
+                          <select class="form-control" name="category_id" id="category"  required="true">
                               <option value="" selected disabled>Select Category</option>
                               @if(!empty($categories))
                                   @foreach($categories as $category)
@@ -46,7 +46,27 @@
                     </div>
                   </div>
 
-                  <div class="row mt-2">
+                  <div class="row mt-3">
+
+                      <div class="col">
+                        <div class="form-group">
+                            <label>Sub Category</label>
+                            <select class="form-control" name="sub_category_id" id="sub_category">
+                                <option value="" selected disabled>Select Sub Category</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                          <label>Breed</label>
+                          <select class="form-control" name="breed_id" id="breed">
+                              <option value="" selected disabled>Select Breed</option>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mt-3">
                       <div class="col-6">
                           <div class="form-group">
                               <label>Tags</label>

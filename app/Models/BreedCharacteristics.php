@@ -9,11 +9,9 @@ class BreedCharacteristics extends Model
 {
     use HasFactory;
     protected $table = "breed_characteristics";
-
     protected $fillable = [
         "created_by",
-        "bread_id",
-        "title",
-        "value"
+        "breed_id",
+        "characteristic_id",
     ];
 }

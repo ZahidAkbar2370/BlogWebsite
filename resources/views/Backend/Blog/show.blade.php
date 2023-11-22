@@ -46,13 +46,23 @@
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  
+
 
                   <h5 class="card-title">Blog Details</h5>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Category Name</div>
-                    <div class="col-lg-9 col-md-8">{{ $blog->categories->category_name }}</div>
+                    <div class="col-lg-9 col-md-8">{{ $blog->categories->category_name ?? '' }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Sub Category</div>
+                    <div class="col-lg-9 col-md-8">{{ $blog->sub_categories->sub_category_name ?? '' }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Breed Name</div>
+                    <div class="col-lg-9 col-md-8"><a href="{{ url('backend/show-breed/'.$blog->breeds->id) ?? '#' }}">{{ $blog->breeds->breed_name ?? '' }}</a></div>
                   </div>
 
                   <div class="row">
@@ -89,7 +99,7 @@
                     <div class="row mb-3">
                       {{-- <h5 class="card-title">Description</h5> --}}
                   <p class="small fst-italic">{{ $blog->description }}</p>
-                      
+
                     </div>
 
                 </div>
@@ -114,11 +124,11 @@
                     <div class="row mb-3">
                       <h5 class="card-title">Description</h5>
                   <p class="small fst-italic">{{ $blog->seo_description }}</p>
-                      
+
                     </div>
 
                 </div>
-             
+
 
               </div><!-- End Bordered Tabs -->
 

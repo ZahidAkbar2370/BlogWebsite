@@ -180,6 +180,27 @@
       </li><!-- End Class -->
 
       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#sub_categories-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-grid"></i><span>Sub Category</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="sub_categories-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="{{ url('backend/sub-categories') }}">
+              <i class="bi bi-circle"></i><span>List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('backend/create-sub-category') }}">
+              <i class="bi bi-circle"></i><span>Add</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Class -->
+
+
+
+
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#breeds-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-grid"></i><span>Breed</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>

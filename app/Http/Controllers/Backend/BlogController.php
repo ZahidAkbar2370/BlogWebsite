@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Breed;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -20,12 +22,12 @@ class BlogController extends Controller
 
     function create(){
         $categories = Category::where("status", "active")->get();
+        $subCategories = SubCategory::all();
 
-        return view("Backend.Blog.create", compact('categories'));
+        return view("Backend.Blog.create", compact('categories', 'subCategories'));
     }
 
     public function store(Request $request) {
-        // print_r($request->all());exit;
         $request->validate([
             'title' => 'required|max:255|unique:blogs',
             'thumbnail' => 'required',
@@ -42,6 +44,8 @@ class BlogController extends Controller
             Blog::create([
                 "created_by" => Auth::user()->id ?? 1,
                 "category_id" => $request->category_id,
+                "sub_category_id" => $request->sub_category_id,
+                "breed_id" => $request->breed_id,
                 "title" => $request->title,
                 "thumbnail" => $thumbnail,
                 "tags" => $request->tags,
@@ -78,6 +82,8 @@ class BlogController extends Controller
         $blog->description = $request->description;
         $blog->tags = $request->tags;
         $blog->category_id = $request->category_id;
+        $blog->sub_category_id = $request->sub_category_id;
+        $blog->breed_id = $request->breed_id;
         $blog->seo_title = $request->seo_title;
         $blog->seo_keywords = $request->seo_keywords;
         $blog->seo_description = $request->seo_description;
@@ -157,4 +163,12 @@ function importform(){
         }
         return redirect("backend/blogs")->with('success', 'Data imported successfully');
 }
+
+public function getSubcategories($category_id)
+    {
+        $subcategories = SubCategory::where('category_id', $category_id)->get();
+        $breeds = Breed::where('category_id', $category_id)->get();
+
+        return response()->json(['subcategories' => $subcategories, "breeds" => $breeds]);
+    }
 }

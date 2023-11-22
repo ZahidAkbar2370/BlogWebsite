@@ -64,6 +64,41 @@ $(document).ready(function() {
         });
     });
 
+    $('#category').on('change', function() {
+        var categoryId = $(this).val();
+
+        if (categoryId) {
+            $.ajax({
+                type: 'GET',
+                url: '/backend/get-subcategories/' + categoryId,
+                dataType: 'json',
+                success: function(data) {
+                    $('#sub_category').empty();
+                    $('#sub_category').append('<option value="" selected disabled>Select Sub Category</option>');
+
+                    if (data.subcategories) {
+                        $.each(data.subcategories, function(key, value) {
+                            $('#sub_category').append('<option value="' + value.id + '">' + value.sub_category_name + '</option>');
+                        });
+                    }
+
+
+                    $('#breed').empty();
+                    $('#breed').append('<option value="" selected disabled>Select Breed</option>');
+                    if (data.breeds) {
+                        $.each(data.breeds, function(key, value) {
+                            $('#breed').append('<option value="' + value.id + '">' + value.breed_name + '</option>');
+                        });
+                    }
+                }
+            });
+        } else {
+            $('#sub_category').empty();
+            $('#breed').empty();
+            $('#sub_category').append('<option value="" selected disabled>Select Sub Category</option>');
+            $('#breed').append('<option value="" selected disabled>Select Breed</option>');
+        }
+    });
 
 });
 
@@ -87,7 +122,7 @@ function addDynamicField() {
     var dynamicFieldsContainer = $("#dynamic-fields-container");
 
     var newField = `
-        <div class="row mt-2">
+        <div class="row mt-3">
             <div class="col-5">
                 <div class="form-group">
                     <label>Title</label>
@@ -98,7 +133,7 @@ function addDynamicField() {
             <div class="col-5">
                 <div class="form-group">
                     <label>Text</label>
-                    <input type="text" class="form-control" name="characteristic_text[]" placeholder="Characteristic Text" required>
+                    <input type="number" min="0" max="100" class="form-control" name="characteristic_text[]" placeholder="Characteristic Text" required>
                 </div>
             </div>
 

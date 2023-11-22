@@ -31,4 +31,8 @@ class Category extends Model
     {
         return $this->hasMany(SubCategory::class, "category_id", "id");
     }
+    public function characteristics()
+    {
+        return $this->hasMany(Characteristic::class, "characteristics_id", "id");
+    }
 }

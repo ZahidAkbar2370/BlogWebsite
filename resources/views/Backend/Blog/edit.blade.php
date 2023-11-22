@@ -44,7 +44,41 @@
               </div>
             </div>
 
-            <div class="row mt-2">
+            <div class="row mt-3">
+
+                <div class="col">
+                  <div class="form-group">
+                      <label>Sub Category</label>
+                      @php
+                        $subCategories = \App\Models\SubCategory::where("category_id", $blog->category_id)->get();
+                      @endphp
+                      <select class="form-control" name="sub_category_id" id="sub_category">
+                          @if(!empty($subCategories))
+                            @foreach($subCategories as $sub_category)
+                                <option value="{{ $sub_category->id }}" @if($blog->sub_category_id == $sub_category->id) selected @endif>{{ $sub_category->sub_category_name }}</option>
+                            @endforeach
+                          @endif
+                      </select>
+                  </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                    <label>Breed</label>
+                    @php
+                        $breeds = \App\Models\Breed::where("category_id", $blog->category_id)->get();
+                      @endphp
+                      <select class="form-control" name="breed_id" id="breed">
+                          @if(!empty($breeds))
+                            @foreach($breeds as $breed)
+                                <option value="{{ $breed->id }}" @if($blog->breed_id == $breed->id) selected @endif>{{ $breed->breed_name }}</option>
+                            @endforeach
+                          @endif
+                      </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-3">
                 <div class="col-6">
                     <div class="form-group">
                         <label>Tags</label>
@@ -71,7 +105,7 @@
               </div>
             </div>
 
-            
+
             <div class="card p-3">
             <h3 class="card-title">SEO Meta</h3>
               <div class="row mt-2">
@@ -89,7 +123,7 @@
                         <input type="text" name="seo_keywords" class="form-control" value="{{ $blog->seo_keywords ?? old('seo_keywords') }}">
                     </div>
                 </div>
-              
+
 
               <div class="col-4">
                     <div class="form-group">
@@ -97,9 +131,9 @@
                         <input type="url" name="url" class="form-control" value="{{ $blog->url ?? old('url') }}">
                     </div>
                 </div>
-             
 
-             
+
+
               <div class="col-12">
                     <div class="form-group">
                         <label>SEO Description</label>
@@ -125,5 +159,5 @@
 </main>
 
 
-    
+
 @endsection

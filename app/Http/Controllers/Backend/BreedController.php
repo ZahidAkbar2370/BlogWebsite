@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Breed;
+use App\Models\BreedCharacteristics;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,14 +28,31 @@ class BreedController extends Controller
             'breed_name' => 'required|max:255',
         ]);
 
-        Breed::create([
-            "created_by" => Auth::user()->id ?? '',
-            "category_id" => $request->category_id,
-            "breed_name" => $request->breed_name,
-            "breed_description" => $request->breed_description,
-        ]);
+        $createdBreed = Breed::create([
+                "created_by" => Auth::user()->id ?? '',
+                "category_id" => $request->category_id,
+                "breed_name" => $request->breed_name,
+                "breed_description" => $request->breed_description,
+            ]);
+
+            if(!empty($request->breed_characteristics)){
+                foreach($request->breed_characteristics as $characteristic){
+                    BreedCharacteristics::create([
+                        "created_by"=> Auth::user()->id ?? "",
+                        "breed_id" => $createdBreed->id,
+                        "characteristic_id" => $characteristic,
+                    ]);
+            }
+        }
 
         return redirect("backend/breeds")->with("success", "Breed Created Successfully!");
+    }
+
+    public function show($id) {
+        $breed = Breed::find($id);
+
+        return view('Backend.Breed.show', compact('breed'));
+
     }
 
     function destroy($id) {

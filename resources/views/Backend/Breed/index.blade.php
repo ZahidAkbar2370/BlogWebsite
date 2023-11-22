@@ -37,6 +37,7 @@
                             <td>{{ $breed->categories->category_name ?? '' }}</td>
                             <td>{{ $breed->breed_name }}</td>
                             <td>
+                                <a href="{{ url('backend/show-breed',$breed->id) }}" class="btn btn-primary"><i class="bi bi-eye"></i></a>
                                 <a href="{{ url('backend/delete-breed',$breed->id) }}" onclick="return confirm('Are you sure to Delete Breed?')" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                             </td>
                         </tr>
